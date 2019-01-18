@@ -1,0 +1,7 @@
+#app 
+  input#input(type="text")
+  button(v-on:click="addItem") Add
+  ul
+    li(v-for="todo in todos")
+      input(type="checkbox", @click="app.todos.pop(this)")
+      lable(for="checkbox") {{ todo.text }}
