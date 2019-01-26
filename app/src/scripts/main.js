@@ -21,7 +21,7 @@ var app = new Vue({
   methods: {
     addItem() {
       let input = document.querySelector('#input');
-      if (input.value.length > 0) { app.todos.push({ text: input.value })
+      if (input.value.length > 0) { app.todos.push({ text: input.value, done : false })
       }
     }
   }
