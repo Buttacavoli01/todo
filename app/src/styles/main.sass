@@ -1,3 +1,35 @@
+root
+  box-sizing: border-box
+
+*,
+*::before,
+*::after
+  box-sizing: inherit
+
+#app
+  width: 100%
+
+.container
+  background-color: #f2eecb
+  border: 1px solid white
+  box-shadow: 2px 2px 2px 2px
+  display: grid
+  grid-template-columns: 1fr
+  grid-template-rows: repeat(3, .5fr)
+  justify-items: center
+  position: absolute
+  right: 25%
+  width: 50%
+
+.form-container
+  input
+    border-radius: .5em
+    &:focus
+      background-color: yellow
+  button
+    border-radius: .2em
+    padding: .2em
+
 ol
   list-style: none
 
@@ -6,3 +38,10 @@ ol
 
 .active
   text-decoration: none
+
+span
+  margin: .3em
+  border-bottom: 1px solid blue
+
+li
+  margin-bottom: .5em
