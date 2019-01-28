@@ -22,10 +22,9 @@ root
   display: grid
   grid-template-columns: 1fr
   grid-template-rows: repeat(2, .5fr)
-  justify-items: center
-  position: absolute
-  right: 25%
-  width: 50%
+  justify-content: center
+  text-align: center
+
 
 .form-container
   input
@@ -45,11 +44,28 @@ span
   margin: .3em
 
 li
+  align-items: center
   border: 1px solid $blk
   box-shadow: 1px 1px 1px 1px $blk
+  display: flex
+  justify-content: flex-start
   margin-bottom: .5em
+  width: 10em
 
-@media (min-width: 320px)
+@media (min-width: 425px)
+  li
+    left: 20%
+    position: relative
+
+@media(max-width: 768px)
+  li
+    left: 30%
+
+@media(min-width: 1024px)
   .container
-    left: 3em
-    width: 75%
+    position: absolute
+    left: 25%
+    width: 50%
+
+  li
+    left: 35%

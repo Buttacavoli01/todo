@@ -1,1 +1,0 @@
-npm i --save-dev gulp-terser gulp-concat gulp-sass  gulp-imagemin gulp-cssnano gulp-autoprefixer del browser-sync gulp-pug
