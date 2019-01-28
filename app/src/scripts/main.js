@@ -11,9 +11,9 @@ var app = new Vue({
   },
   template:
   `<div class='container'>
-    <h1> {{message}}</h1>
+    <h1> {{ message }} </h1>
     <div class="form-container">
-      <input id='input' type='text' @keydown.enter="addItem">
+      <input id='input' placeholder="Add New Item.."  @keydown.enter="addItem">
       <button @click="addItem">Add Item</button>
       <button @click="removeList">Clear List</button>
     </div>
@@ -32,7 +32,6 @@ var app = new Vue({
       let input = document.getElementById('input');
       if (input.value.length > 0) {
         app.todos.push({ text: input.value, done : false });
-
       }
       input.value = "";
     },
