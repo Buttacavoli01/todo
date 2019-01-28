@@ -42,11 +42,6 @@ var app = new Vue({
       while (itemList.childNodes) {
         itemList.removeChild(itemList.childNodes[0]);
       }
-    },
-    mounted() {
-      if (localStorage.getItem('todos')) {
-        this.todos.text = JSON.parse(localStorage.getItem('todos'));
-      }
     }
   },
   computed: {
@@ -54,14 +49,6 @@ var app = new Vue({
       return {
         backgroundColor: this.backgroundColor
       };
-    }
-  },
-  watch: {
-    todos: {
-      handler() {
-        localStorage.setItem('todos', JSON.stringify(this.todos));
-      },
-      deep: true,
     }
   }
 });
