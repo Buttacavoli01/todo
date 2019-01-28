@@ -1,3 +1,9 @@
+$old-paper: #f2eecb
+$blk: #000
+$white: #fff
+$yellow: #ff0
+
+
 root
   box-sizing: border-box
 
@@ -6,16 +12,16 @@ root
 *::after
   box-sizing: inherit
 
-#app
+.app-container
   width: 100%
 
 .container
-  background-color: #f2eecb
-  border: 1px solid white
+  background-color: lighten($old-paper, 5%)
+  border: 1px solid $white
   box-shadow: 2px 2px 2px 2px
   display: grid
   grid-template-columns: 1fr
-  grid-template-rows: repeat(3, .5fr)
+  grid-template-rows: repeat(2, .5fr)
   justify-items: center
   position: absolute
   right: 25%
@@ -24,8 +30,10 @@ root
 .form-container
   input
     border-radius: .5em
+
     &:focus
-      background-color: yellow
+      background-color: $yellow
+
   button
     border-radius: .2em
     padding: .2em
@@ -33,15 +41,12 @@ root
 ol
   list-style: none
 
-.complete
-  text-decoration: line-through
-
-.active
-  text-decoration: none
-
 span
   margin: .3em
-  border-bottom: 1px solid blue
 
 li
+  border: 1px solid $blk
+  box-shadow: 1px 1px 1px 1px $blk
   margin-bottom: .5em
+
+@media 

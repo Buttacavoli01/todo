@@ -2,7 +2,7 @@ var app = new Vue({
   el: '#app',
   data: {
     backgroundColor: 'white',
-    message: 'To-Do',
+    message: 'Vue To-Do',
     todos: [
       {text: 'Learn JavaScript'},
       {text: 'Learn Vue'},
@@ -13,7 +13,7 @@ var app = new Vue({
   `<div class='container'>
     <h1> {{message}}</h1>
     <div class="form-container">
-      <input id='input' type='text' required>
+      <input id='input' type='text' @keydown.enter="addItem">
       <button @click="addItem">Add Item</button>
       <button @click="removeList">Clear List</button>
     </div>
@@ -31,20 +31,25 @@ var app = new Vue({
     addItem() {
       let input = document.getElementById('input');
       if (input.value.length > 0) {
-        app.todos.push({ text: input.value, done : false })
+        app.todos.push({ text: input.value, done : false });
 
       }
       input.value = "";
     },
     removeItem(index) {
-      app.todos.splice(index, 1)
-      const checkbox = document.getElementById('cb')
-      checkbox.checked = false
+      app.todos.splice(index, 1);
+      const checkbox = document.getElementById('cb');
+      checkbox.checked = false;
     },
     removeList() {
-      let itemList = document.querySelector('#itemList')
+      let itemList = document.querySelector('#itemList');
       while(itemList.childNodes){
         itemList.removeChild(itemList.childNodes[0]);
+        }
+      },
+      mounted() {
+        if (localStorage.getItem('todos')){
+        this.todos = JSON.parse(localStorage.getItem('todos'));
         }
       }
     },
@@ -52,10 +57,17 @@ var app = new Vue({
       textEdit() {
         return {
           backgroundColor: this.backgroundColor
-        }
+        };
       }
-
+    },
+    watch: {
+      todos: {
+        handler() {
+          localStorage.setItem('todos', JSON.stringify(this.todos))
+        },
+        deep: true,
     }
+  }
 });
 
 
