@@ -3,21 +3,30 @@ var app = new Vue({
   data: {
     backgroundColor: 'white',
     message: 'Vue To-Do',
+    newTodo: '',
     todos: []
   },
-  template: `<div class='container'>
+  template:
+  `<div class='container'>
     <h1> {{ message }} </h1>
     <div class="form-container">
-      <input id='input' placeholder="Add New Item.."  @keydown.enter="addItem">
+      <input id='input'
+        placeholder="Add New Item.."
+        @keydown.enter="addItem">
       <button @click="addItem">Add Item</button>
       <button @click="removeList">Clear List</button>
     </div>
-    <ol id='itemList'>
+    <ol id="itemList">
       <li v-for='(todo, index) in todos'
+        :class="[todo.done ? 'complete' : 'active']"
         :key="index">
-        <input id="cb" @click="removeItem(index)" type="checkbox">
-        <span :style="textEdit" contentEditable="true">
-          {{todo.text}}
+        <input
+          id="cb"
+          @click="todo.done = !todo.done"
+          type="checkbox"
+          v-model="todo.done">
+        <span>
+          {{ todo.text }}
         </span>
       </li>
     </ol>
@@ -27,28 +36,26 @@ var app = new Vue({
       let input = document.getElementById('input');
       if (input.value.length > 0) {
         app.todos.push({
-          text: input.value
+          text: input.value,
+          done: false
         });
+        input.value =''
       }
-      input.value = "";
-    },
-    removeItem(index) {
-      app.todos.splice(index, 1);
-      const checkbox = document.getElementById('cb');
-      checkbox.checked = false;
     },
     removeList() {
       let itemList = document.querySelector('#itemList');
       while (itemList.childNodes) {
         itemList.removeChild(itemList.childNodes[0]);
-      }
+        localStorage.removeItem('todos')
+        }
+      },
     },
     mounted() {
+      console.log('Mounted local storage')
       if (localStorage.getItem('todos')) {
-        this.todos.text = JSON.parse(localStorage.getItem('todos'));
+        this.todos = JSON.parse(localStorage.getItem('todos'));
       }
-    }
-  },
+    },
   computed: {
     textEdit() {
       return {
@@ -59,6 +66,7 @@ var app = new Vue({
   watch: {
     todos: {
       handler() {
+        console.log('Item added!')
         localStorage.setItem('todos', JSON.stringify(this.todos));
       },
       deep: true,
@@ -67,4 +75,4 @@ var app = new Vue({
 });
 
 
-//@click="todo.done = !todo.done"
+//@click="removeItem(index)"
