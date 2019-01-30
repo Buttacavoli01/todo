@@ -62,7 +62,7 @@ gulp.task('mkdir' , function() {
     .pipe(gulp.dest('app/src/views'))
     .pipe(gulp.dest('app/vendor'))
     .pipe(gulp.dest('app/vendor/scripts'))
-    .pipe(gulp.dest('app/vendor/styles'))
+    .pipe(gulp.dest('app/vendor/styles'));
 });
 
 gulp.task('clean', function() {

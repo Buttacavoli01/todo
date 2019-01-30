@@ -11,6 +11,7 @@ var app = new Vue({
     <h1> {{ message }} </h1>
     <div class="form-container">
       <input id='input'
+        :model="newTodo"
         placeholder="Add New Item.."
         @keydown.enter="addItem">
       <button @click="addItem">Add Item</button>
@@ -39,47 +40,38 @@ var app = new Vue({
           text: input.value,
           done: false
         });
-        input.value =''
+        input.value ='';
       }
     },
     removeList() {
       let itemList = document.querySelector('#itemList');
       while (itemList.childNodes) {
         itemList.removeChild(itemList.childNodes[0]);
- localstorage
-        localStorage.removeItem('todos')
+        localStorage.removeItem('todos');
         }
       },
     },
     mounted() {
-      console.log('Mounted local storage')
+      console.log('Mounted local storage');
       if (localStorage.getItem('todos')) {
         this.todos = JSON.parse(localStorage.getItem('todos'));
       }
     },
-
-      }
-    }
-  },
- master
   computed: {
     textEdit() {
       return {
         backgroundColor: this.backgroundColor
       };
     }
- localstorage
   },
   watch: {
     todos: {
       handler() {
-        console.log('Item added!')
+        console.log('Item added!');
         localStorage.setItem('todos', JSON.stringify(this.todos));
       },
       deep: true,
     }
-
- master
   }
 });
 
