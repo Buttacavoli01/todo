@@ -46,6 +46,7 @@ var app = new Vue({
       let itemList = document.querySelector('#itemList');
       while (itemList.childNodes) {
         itemList.removeChild(itemList.childNodes[0]);
+ localstorage
         localStorage.removeItem('todos')
         }
       },
@@ -56,12 +57,18 @@ var app = new Vue({
         this.todos = JSON.parse(localStorage.getItem('todos'));
       }
     },
+
+      }
+    }
+  },
+ master
   computed: {
     textEdit() {
       return {
         backgroundColor: this.backgroundColor
       };
     }
+ localstorage
   },
   watch: {
     todos: {
@@ -71,6 +78,8 @@ var app = new Vue({
       },
       deep: true,
     }
+
+ master
   }
 });
 
